@@ -1,0 +1,172 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+}
+
+.brand {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* ---------- Mobile : burger + side panel ---------- */
+
+.burger {
+  position: relative;
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: -0.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.burgerIcon,
+.burgerIcon::before,
+.burgerIcon::after {
+  position: absolute;
+  left: 50%;
+  width: 1.5rem;
+  height: 2px;
+  margin-left: -0.75rem;
+  background: currentColor;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.burgerIcon {
+  top: 50%;
+}
+
+.burgerIcon::before,
+.burgerIcon::after {
+  content: "";
+  left: 0;
+  margin-left: 0;
+}
+
+.burgerIcon::before {
+  transform: translateY(-7px);
+}
+
+.burgerIcon::after {
+  transform: translateY(7px);
+}
+
+.burger[aria-expanded="true"] .burgerIcon {
+  background: transparent;
+}
+
+.burger[aria-expanded="true"] .burgerIcon::before {
+  transform: rotate(45deg);
+  background: currentColor;
+}
+
+.burger[aria-expanded="true"] .burgerIcon::after {
+  transform: rotate(-45deg);
+  background: currentColor;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.overlayVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: min(20rem, 85vw);
+  padding: calc(var(--header-height) + 1rem) var(--gutter) 2rem;
+  background: var(--color-bg);
+  overflow-y: auto;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.25s ease, visibility 0.25s ease;
+}
+
+.navOpen {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: block;
+  padding: 0.75rem 0;
+  font-size: 1.125rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.link[aria-current="page"] {
+  font-weight: 700;
+}
+
+/* ---------- Desktop : menu horizontal ---------- */
+
+@media (min-width: 1024px) {
+  .burger,
+  .overlay {
+    display: none;
+  }
+
+  .nav {
+    position: static;
+    width: auto;
+    padding: 0;
+    transform: none;
+    visibility: visible;
+    overflow: visible;
+    transition: none;
+  }
+
+  .list {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .link {
+    padding: 0.25rem 0;
+    font-size: 0.9375rem;
+    border-bottom: 2px solid transparent;
+  }
+
+  .link:hover,
+  .link[aria-current="page"] {
+    border-bottom-color: currentColor;
+  }
+
+  .link[aria-current="page"] {
+    font-weight: 400;
+  }
+}
