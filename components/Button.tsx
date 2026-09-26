@@ -11,15 +11,13 @@ export type ButtonProps = {
    * - e-mail / téléphone : "mailto:…" / "tel:…"
    */
   href: string;
-  variant?: "primary" | "secondary";
 };
 
-export default function Button({ label, href, variant = "primary" }: ButtonProps) {
-  const className = `${styles.button} ${styles[variant]}`;
-
+// Le style s'adapte au fond : voir Button.module.css et la classe globale .theme-dark
+export default function Button({ label, href }: ButtonProps) {
   if (href.startsWith("/")) {
     return (
-      <Link href={href} className={className}>
+      <Link href={href} className={styles.button}>
         {label}
       </Link>
     );
@@ -29,7 +27,7 @@ export default function Button({ label, href, variant = "primary" }: ButtonProps
   return (
     <a
       href={href}
-      className={className}
+      className={styles.button}
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
     >
       {label}

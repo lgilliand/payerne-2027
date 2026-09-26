@@ -15,12 +15,12 @@ export default function HomePage() {
         text="Découvrez toutes les animations, concerts et concours prévus durant le giron."
         image={{ src: "/images/placeholder.svg", alt: "" }}
         imagePosition="right"
-        action={{ label: "Voir le programme", href: "/programme/", variant: "secondary" }}
+        action={{ label: "Voir le programme", href: "/programme/" }}
       />
       <Block
         title="Devenir bénévole"
         text="Envie de participer à l'aventure ? Rejoignez l'équipe des bénévoles."
-        action={{ label: "S'inscrire", href: "/benevoles/", variant: "secondary" }}
+        action={{ label: "S'inscrire", href: "/benevoles/" }}
       />
     </>
   );
