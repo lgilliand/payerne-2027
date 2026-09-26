@@ -32,7 +32,12 @@ export default function Header() {
     <header className={styles.header}>
       <div className={`container ${styles.bar}`}>
         <Link href="/" className={styles.brand}>
-          Giron de la Broye 2027
+          <img
+            src="/images/logo.svg"
+            alt="Giron de la Broye 2027 – Payerne, accueil"
+            width={1141}
+            height={676}
+          />
         </Link>
 
         <button

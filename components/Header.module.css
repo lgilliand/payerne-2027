@@ -14,8 +14,13 @@
 }
 
 .brand {
-  font-weight: 700;
-  text-decoration: none;
+  display: block;
+  flex-shrink: 0;
+}
+
+.brand img {
+  width: auto;
+  height: calc(var(--header-height) - 0.75rem);
 }
 
 /* ---------- Mobile : burger + side panel ---------- */
