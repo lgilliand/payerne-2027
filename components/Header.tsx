@@ -33,7 +33,7 @@ export default function Header() {
       <div className={`container ${styles.bar}`}>
         <Link href="/" className={styles.brand}>
           <img
-            src="/images/logo.svg"
+            src="/images/logo-negatif.svg"
             alt="Giron de la Broye 2027 – Payerne, accueil"
             width={1141}
             height={676}

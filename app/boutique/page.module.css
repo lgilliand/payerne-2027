@@ -1,0 +1,35 @@
+.shop {
+  padding-bottom: 2rem;
+}
+
+/*
+ * Sur mobile, l'iframe occupe exactement la hauteur visible sous la barre de navigation :
+ * on peut la faire défiler sans qu'elle déborde de l'écran.
+ */
+.frame {
+  display: block;
+  width: 100%;
+  height: calc(100dvh - var(--header-height) - 2rem);
+  min-height: 32rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-white);
+}
+
+.fallback {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.fallback a {
+  color: var(--color-blue);
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .frame {
+    height: 800px;
+  }
+}
