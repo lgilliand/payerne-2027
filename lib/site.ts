@@ -2,6 +2,8 @@ export const site = {
   name: "Giron de la Broye 2027",
   city: "Payerne",
   dates: "Du 28 juillet au 1er août 2027",
+  // Ouverture du giron (heure d'été suisse), utilisée par le compte à rebours
+  startDate: "2027-07-28T18:00:00+02:00",
   email: "info@payerne2027.ch",
   president: "Michaël Rapin",
   // Boutique en ligne (Strap'n'pay), intégrée dans la page Boutique
