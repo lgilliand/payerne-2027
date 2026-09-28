@@ -1,0 +1,69 @@
+.squadron {
+  display: grid;
+  /* Mobile : grille de 6 colonnes, chaque membre en occupe 2 -> formation en V sur 3 rangs */
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem 0.75rem;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
+  list-style: none;
+}
+
+.member {
+  grid-column-end: span 2;
+  text-align: center;
+}
+
+/* Rang 1 : le président, en tête */
+.member[data-position="2"] { grid-row: 1; grid-column-start: 3; }
+/* Rang 2 */
+.member[data-position="1"] { grid-row: 2; grid-column-start: 2; }
+.member[data-position="3"] { grid-row: 2; grid-column-start: 4; }
+/* Rang 3 : les ailes */
+.member[data-position="0"] { grid-row: 3; grid-column-start: 1; }
+.member[data-position="4"] { grid-row: 3; grid-column-start: 5; }
+
+.photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.name {
+  margin: 0.625rem 0 0;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.role {
+  margin: 0.125rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.3;
+  color: var(--color-muted);
+}
+
+/* Grand écran : les 5 sur une ligne, décalés vers le bas en s'éloignant du centre */
+@media (min-width: 768px) {
+  .squadron {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .member[data-position] {
+    grid-row: 1;
+    grid-column: auto;
+  }
+
+  .member[data-position="1"],
+  .member[data-position="3"] {
+    margin-top: 3rem;
+  }
+
+  .member[data-position="0"],
+  .member[data-position="4"] {
+    margin-top: 6rem;
+  }
+}

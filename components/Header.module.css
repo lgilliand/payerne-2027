@@ -140,6 +140,73 @@
   padding-left: 0.75rem;
 }
 
+/* ---------- Sous-menu « À venir » ---------- */
+
+/* Le bouton reprend l'apparence d'un lien du menu */
+.subToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chevron {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: -0.25rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.subToggle[aria-expanded="true"] .chevron {
+  margin-top: 0.25rem;
+  transform: rotate(-135deg);
+}
+
+.subToggle[data-active] {
+  font-weight: 700;
+}
+
+.subList {
+  margin: 0;
+  padding: 0.25rem 0 0.5rem 1rem;
+  list-style: none;
+  border-bottom: 1px solid rgb(255 255 255 / 0.15);
+}
+
+.subList[hidden] {
+  display: none;
+}
+
+.subLink {
+  display: block;
+  padding: 0.5rem 0;
+  color: rgb(255 255 255 / 0.8);
+  text-decoration: none;
+}
+
+.subLink:hover,
+.subLink[aria-current="page"] {
+  color: var(--color-white);
+}
+
+.subLink[aria-current="page"] {
+  font-weight: 700;
+  box-shadow: inset 3px 0 0 var(--color-red);
+  padding-left: 0.75rem;
+}
+
 /* ---------- Desktop : menu horizontal ---------- */
 
 @media (min-width: 1024px) {
@@ -179,5 +246,44 @@
     box-shadow: none;
     padding-left: 0;
     border-bottom-color: var(--color-red);
+  }
+
+  /* Sous-menu : liste déroulante sous le bouton */
+  .subItem {
+    position: relative;
+  }
+
+  .subToggle {
+    width: auto;
+  }
+
+  .subToggle[data-active] {
+    font-weight: 400;
+    border-bottom-color: var(--color-red);
+  }
+
+  .subList {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    min-width: 12rem;
+    padding: 0.5rem 0;
+    border: 1px solid rgb(255 255 255 / 0.15);
+    border-radius: var(--radius);
+    background: var(--color-black);
+    box-shadow: 0 0.5rem 1.5rem rgb(0 0 0 / 0.3);
+  }
+
+  .subLink {
+    padding: 0.5rem 1rem;
+    font-size: 0.9375rem;
+  }
+
+  .subLink:hover {
+    background: rgb(255 255 255 / 0.08);
+  }
+
+  .subLink[aria-current="page"] {
+    padding-left: 1rem;
   }
 }

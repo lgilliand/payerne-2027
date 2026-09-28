@@ -1,0 +1,16 @@
+/* Infos pratiques du repas de soutien : libellé à gauche, valeur à droite */
+.details {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.375rem 1rem;
+  margin: 0 0 1em;
+  color: var(--color-text);
+}
+
+.details dt {
+  font-weight: 700;
+}
+
+.details dd {
+  margin: 0;
+}
