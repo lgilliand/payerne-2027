@@ -1,0 +1,15 @@
+.form {
+  padding-bottom: 2rem;
+}
+
+.fallback {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.fallback a {
+  color: var(--color-blue);
+  font-weight: 600;
+}

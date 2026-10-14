@@ -4,6 +4,23 @@ import VisibleUntil from "@/components/VisibleUntil";
 import { site } from "@/lib/site";
 import styles from "./page.module.css";
 
+// Matériel recherché pour l'organisation du giron
+const materials = [
+  "Palettes",
+  "Palox",
+  "Outils à main",
+  "Lumières",
+  "Tableau blanc",
+  "Seaux",
+  "Spensettes",
+  "Vaisselle réutilisable",
+  "Armoires / étagères",
+  "Tables et chaises",
+  "Caisses en plastique",
+  "Toutes sortes de bois de plus de 2 m de long",
+  "Visserie",
+];
+
 export default function HomePage() {
   return (
     <>
@@ -90,7 +107,45 @@ export default function HomePage() {
             </p>
           </>
         }
-        action={{ label: "Je m'inscris", href: site.volunteerUrl }}
+        action={{ label: "Je m'inscris", href: "/benevoles/" }}
+      />
+      <Block
+        title="Vente de vin et de gadgets"
+        text={
+          <>
+            <p>
+              Une vente de vin et de gadgets aux couleurs du Giron de la Broye 2027 est en
+              cours. De quoi trinquer avant le décollage et afficher fièrement les couleurs de
+              Payerne 2027 !
+            </p>
+            <p>Chaque achat soutient l&apos;organisation du giron : merci pour ton soutien.</p>
+          </>
+        }
+        action={{ label: "Voir la boutique", href: "/boutique/" }}
+      />
+      <Block
+        title="Recherche de matériel"
+        text={
+          <>
+            <p>
+              Tu as du matériel dont tu ne te sers plus et qui pourrait avoir une seconde vie ?
+              Nous sommes à la recherche du matériel suivant :
+            </p>
+            <ul className={styles.materials}>
+              {materials.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <p>
+              Si tu possèdes l&apos;un de ces objets et que tu peux nous le donner, ton aide
+              serait précieuse ! Contacte-nous à {site.email}.
+            </p>
+          </>
+        }
+        action={{
+          label: "Nous contacter",
+          href: `mailto:${site.email}?subject=${encodeURIComponent("Don de matériel")}`,
+        }}
       />
     </>
   );

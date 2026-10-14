@@ -12,8 +12,9 @@ export const site = {
       "https://docs.google.com/forms/d/e/1FAIpQLSelbp--whMqhHIYaMVyeWfQLfi8Nm1x2yqj5sAfzagx-Kdyng/viewform?usp=send_form",
     hideFrom: "2026-10-11T00:00:00+02:00",
   },
-  // Pré-inscription des bénévoles (Benevoo)
+  // Pré-inscription des bénévoles (Benevoo) : page publique et identifiant pour l'iframe
   volunteerUrl: "https://benevoo.ch/manifestation-public/2d0d1e4c685c1539",
+  benevooEventId: "2d0d1e4c685c1539",
   // Boutique en ligne (Strap'n'pay), intégrée dans la page Boutique
   shopUrl: "https://payerne2027.pay.strapnpay.ch/pay?tid=9f9c0eaa&appview=1&breakIframe=1",
   social: {
