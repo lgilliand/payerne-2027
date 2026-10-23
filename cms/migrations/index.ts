@@ -2,6 +2,7 @@ import * as migration_20261022_060557_initial from './20261022_060557_initial';
 import * as migration_20261023_214852_pages_et_parametres from './20261023_214852_pages_et_parametres';
 import * as migration_20261023_220305_actualites_ordre from './20261023_220305_actualites_ordre';
 import * as migration_20261023_220400_actualites_accueil from './20261023_220400_actualites_accueil';
+import * as migration_20261023_221232_page_histoire from './20261023_221232_page_histoire';
 
 export const migrations = [
   {
@@ -23,5 +24,10 @@ export const migrations = [
     up: migration_20261023_220400_actualites_accueil.up,
     down: migration_20261023_220400_actualites_accueil.down,
     name: '20261023_220400_actualites_accueil',
+  },
+  {
+    up: migration_20261023_221232_page_histoire.up,
+    down: migration_20261023_221232_page_histoire.down,
+    name: '20261023_221232_page_histoire'
   },
 ];

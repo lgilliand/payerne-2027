@@ -20,7 +20,8 @@ function introFields(title: string, intro: string[]): Field[] {
   ];
 }
 
-function page(slug: string, label: string, intro: string[]): GlobalConfig {
+// Sans texte fourni, le champ est vide et sera rempli dans /admin
+function page(slug: string, label: string, intro: string[] = []): GlobalConfig {
   return {
     slug: `page-${slug}`,
     label,
@@ -72,6 +73,7 @@ const home: GlobalConfig = {
 
 export const Pages: GlobalConfig[] = [
   home,
+  page("histoire", "Histoire"),
   page("benevoles", "Bénévoles", [
     "Les pré-inscriptions des bénévoles sont ouvertes !",
     "Réserve dès maintenant ta place dans l'équipage pour ne pas rater la tranche horaire qui te convient le mieux.",

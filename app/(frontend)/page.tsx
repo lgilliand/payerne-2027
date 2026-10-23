@@ -37,6 +37,7 @@ export default async function HomePage() {
             ? { src: file.url, alt: media?.alt ?? "", width: file.width ?? undefined, height: file.height ?? undefined }
             : defaultImage
         }
+        action={{ label: "En savoir plus", href: "/histoire" }}
       >
         <Countdown target={settings.startDate} label={page.countdownLabel} doneLabel={page.countdownDoneLabel} />
       </Block>

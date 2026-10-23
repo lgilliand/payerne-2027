@@ -5,6 +5,7 @@ import { cache } from "react";
 
 export type PageSlug =
   | "accueil"
+  | "histoire"
   | "benevoles"
   | "boutique"
   | "comite"

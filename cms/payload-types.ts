@@ -91,6 +91,7 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'page-accueil': PageAccueil;
+    'page-histoire': PageHistoire;
     'page-benevoles': PageBenevole;
     'page-boutique': PageBoutique;
     'page-comite': PageComite;
@@ -103,6 +104,7 @@ export interface Config {
   };
   globalsSelect: {
     'page-accueil': PageAccueilSelect<false> | PageAccueilSelect<true>;
+    'page-histoire': PageHistoireSelect<false> | PageHistoireSelect<true>;
     'page-benevoles': PageBenevolesSelect<false> | PageBenevolesSelect<true>;
     'page-boutique': PageBoutiqueSelect<false> | PageBoutiqueSelect<true>;
     'page-comite': PageComiteSelect<false> | PageComiteSelect<true>;
@@ -477,6 +479,35 @@ export interface PageAccueil {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-histoire".
+ */
+export interface PageHistoire {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "page-benevoles".
  */
 export interface PageBenevole {
@@ -750,6 +781,18 @@ export interface PageAccueilSelect<T extends boolean = true> {
   image?: T;
   countdownLabel?: T;
   countdownDoneLabel?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-histoire_select".
+ */
+export interface PageHistoireSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
