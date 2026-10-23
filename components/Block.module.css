@@ -61,3 +61,27 @@ h1.title {
     font-size: 2.5rem;
   }
 }
+
+/* Listes du texte : puces rouges, sur 2 colonnes dès qu'elles sont longues et que la place le permet */
+.text :is(ul, ol) {
+  margin: 0 0 1em;
+  padding-left: 1.25rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.text li {
+  padding-block: 0.125rem;
+  break-inside: avoid;
+}
+
+.text li::marker {
+  color: var(--color-red);
+}
+
+@media (min-width: 480px) {
+  .text :is(ul, ol):has(> li:nth-child(6)) {
+    columns: 2;
+    column-gap: 2rem;
+  }
+}

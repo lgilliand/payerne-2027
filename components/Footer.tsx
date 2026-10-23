@@ -1,15 +1,18 @@
 import Button from "./Button";
 import { FacebookIcon, InstagramIcon, TiktokIcon } from "./SocialIcons";
+import { getSettings } from "@/lib/cms";
+import { isPublished } from "@/lib/navigation";
 import { site } from "@/lib/site";
 import styles from "./Footer.module.css";
 
-const socialLinks = [
-  { label: "Instagram", href: site.social.instagram, Icon: InstagramIcon },
-  { label: "Facebook", href: site.social.facebook, Icon: FacebookIcon },
-  { label: "TikTok", href: site.social.tiktok, Icon: TiktokIcon },
-];
+export default async function Footer() {
+  const settings = await getSettings();
+  const socialLinks = [
+    { label: "Instagram", href: settings.social.instagram, Icon: InstagramIcon },
+    { label: "Facebook", href: settings.social.facebook, Icon: FacebookIcon },
+    { label: "TikTok", href: settings.social.tiktok, Icon: TiktokIcon },
+  ];
 
-export default function Footer() {
   return (
     <footer className={`theme-dark ${styles.footer}`}>
       <div className={`container ${styles.inner}`}>
@@ -17,9 +20,9 @@ export default function Footer() {
           <p className={styles.title}>
             {site.name} à {site.city}
           </p>
-          <p className={styles.dates}>{site.dates}</p>
+          <p className={styles.dates}>{settings.dates}</p>
           <div className={styles.buttons}>
-            <Button label="Programme" href="/programme" />
+            {isPublished("/programme") && <Button label="Programme" href="/programme" />}
             <Button label="Bénévoles" href="/benevoles" />
           </div>
         </div>
@@ -29,11 +32,11 @@ export default function Footer() {
 
           <h3 className={styles.subheading}>E-mail</h3>
           <p>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
+            <a href={`mailto:${settings.email}`}>{settings.email}</a>
           </p>
 
           <h3 className={styles.subheading}>Président d&apos;organisation</h3>
-          <p>{site.president}</p>
+          <p>{settings.president}</p>
 
           <ul className={styles.social}>
             {socialLinks.map(({ label, href, Icon }) => (

@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import Block from "@/components/Block";
+import PageIntro from "@/components/PageIntro";
+import { pageMetadata } from "@/lib/cms";
 import styles from "./page.module.css";
 
-export const metadata: Metadata = { title: "Comité" };
+export const generateMetadata = () => pageMetadata("comite");
 
 // De gauche à droite dans la formation, le président au centre
 const members = [
@@ -41,11 +41,7 @@ const members = [
 export default function ComitePage() {
   return (
     <>
-      <Block
-        headingLevel={1}
-        title="Comité"
-        text="Découvre l'équipage aux commandes du Giron de la Broye 2027."
-      />
+      <PageIntro slug="comite" />
 
       {/* Formation en fer de lance : chaque membre est décalé selon sa distance au centre */}
       <ul className={`container ${styles.squadron}`}>

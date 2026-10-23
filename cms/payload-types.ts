@@ -89,8 +89,30 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'page-accueil': PageAccueil;
+    'page-benevoles': PageBenevole;
+    'page-boutique': PageBoutique;
+    'page-comite': PageComite;
+    'page-sponsors': PageSponsor;
+    'page-photos': PagePhoto;
+    'page-infos': PageInfo;
+    'page-programme': PageProgramme;
+    'page-billetterie': PageBilletterie;
+    settings: Setting;
+  };
+  globalsSelect: {
+    'page-accueil': PageAccueilSelect<false> | PageAccueilSelect<true>;
+    'page-benevoles': PageBenevolesSelect<false> | PageBenevolesSelect<true>;
+    'page-boutique': PageBoutiqueSelect<false> | PageBoutiqueSelect<true>;
+    'page-comite': PageComiteSelect<false> | PageComiteSelect<true>;
+    'page-sponsors': PageSponsorsSelect<false> | PageSponsorsSelect<true>;
+    'page-photos': PagePhotosSelect<false> | PagePhotosSelect<true>;
+    'page-infos': PageInfosSelect<false> | PageInfosSelect<true>;
+    'page-programme': PageProgrammeSelect<false> | PageProgrammeSelect<true>;
+    'page-billetterie': PageBilletterieSelect<false> | PageBilletterieSelect<true>;
+    settings: SettingsSelect<false> | SettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -120,13 +142,14 @@ export interface UserAuthOperations {
   };
 }
 /**
- * Les articles publiés apparaissent sur la page d'accueil, sous le compte à rebours.
+ * Les actualités publiées apparaissent sur la page d'accueil, sous le compte à rebours, dans l'ordre de cette liste. Glisser-déposer pour les réorganiser.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "articles".
  */
 export interface Article {
   id: number;
+  _order?: string | null;
   title: string;
   content: {
     root: {
@@ -155,9 +178,8 @@ export interface Article {
      */
     href?: string | null;
   };
-  publishedAt: string;
   /**
-   * Optionnel : l'article disparaît automatiquement à cette date (fin des inscriptions…).
+   * Optionnel : l'actualité disparaît automatiquement à cette date (fin des inscriptions…).
    */
   hideFrom?: string | null;
   updatedAt: string;
@@ -306,6 +328,7 @@ export interface PayloadMigration {
  * via the `definition` "articles_select".
  */
 export interface ArticlesSelect<T extends boolean = true> {
+  _order?: T;
   title?: T;
   content?: T;
   image?: T;
@@ -316,7 +339,6 @@ export interface ArticlesSelect<T extends boolean = true> {
         label?: T;
         href?: T;
       };
-  publishedAt?: T;
   hideFrom?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -417,6 +439,438 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-accueil".
+ */
+export interface PageAccueil {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  /**
+   * Optionnel : sans photo choisie, la photo de l'équipe d'organisation est affichée.
+   */
+  image?: (number | null) | Media;
+  countdownLabel: string;
+  countdownDoneLabel: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-benevoles".
+ */
+export interface PageBenevole {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-boutique".
+ */
+export interface PageBoutique {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-comite".
+ */
+export interface PageComite {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-sponsors".
+ */
+export interface PageSponsor {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-photos".
+ */
+export interface PagePhoto {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-infos".
+ */
+export interface PageInfo {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-programme".
+ */
+export interface PageProgramme {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-billetterie".
+ */
+export interface PageBilletterie {
+  id: number;
+  title: string;
+  intro: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  /**
+   * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
+   */
+  description?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings".
+ */
+export interface Setting {
+  id: number;
+  /**
+   * Affichées dans le pied de page.
+   */
+  dates: string;
+  /**
+   * Fin du compte à rebours de la page d'accueil.
+   */
+  startDate: string;
+  email: string;
+  president: string;
+  /**
+   * Adresse publique de la manifestation sur Benevoo, le formulaire de la page Bénévoles en découle.
+   */
+  volunteerUrl: string;
+  /**
+   * Adresse de la boutique intégrée dans la page Boutique.
+   */
+  shopUrl: string;
+  social: {
+    instagram: string;
+    facebook: string;
+    tiktok: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-accueil_select".
+ */
+export interface PageAccueilSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  image?: T;
+  countdownLabel?: T;
+  countdownDoneLabel?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-benevoles_select".
+ */
+export interface PageBenevolesSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-boutique_select".
+ */
+export interface PageBoutiqueSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-comite_select".
+ */
+export interface PageComiteSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-sponsors_select".
+ */
+export interface PageSponsorsSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-photos_select".
+ */
+export interface PagePhotosSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-infos_select".
+ */
+export interface PageInfosSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-programme_select".
+ */
+export interface PageProgrammeSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "page-billetterie_select".
+ */
+export interface PageBilletterieSelect<T extends boolean = true> {
+  title?: T;
+  intro?: T;
+  description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "settings_select".
+ */
+export interface SettingsSelect<T extends boolean = true> {
+  dates?: T;
+  startDate?: T;
+  email?: T;
+  president?: T;
+  volunteerUrl?: T;
+  shopUrl?: T;
+  social?:
+    | T
+    | {
+        instagram?: T;
+        facebook?: T;
+        tiktok?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

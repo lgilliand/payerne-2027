@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-import Block from "@/components/Block";
+import PageIntro from "@/components/PageIntro";
+import { pageMetadata } from "@/lib/cms";
 
-export const metadata: Metadata = { title: "Infos générales" };
+export const generateMetadata = () => pageMetadata("infos");
 
 export default function InfosPage() {
-  return (
-    <>
-      <Block headingLevel={1} title="Infos générales" text="Accès, horaires, plan du site et informations pratiques." />
-    </>
-  );
+  return <PageIntro slug="infos" />;
 }

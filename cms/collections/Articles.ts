@@ -1,14 +1,39 @@
 import type { CollectionConfig } from "payload";
+import { generateKeyBetween } from "payload/shared";
 
-// Articles affichés sur la page d'accueil, du plus récent au plus ancien
+// Actualités affichées sur la page d'accueil, dans l'ordre choisi dans /admin
 export const Articles: CollectionConfig = {
   slug: "articles",
-  labels: { singular: "Article", plural: "Articles" },
-  defaultSort: "-publishedAt",
+  labels: { singular: "Actualité", plural: "Actualités" },
+  // Réorganisation par glisser-déposer dans la liste (champ caché _order)
+  orderable: true,
+  defaultSort: "_order",
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "publishedAt", "hideFrom", "_status"],
-    description: "Les articles publiés apparaissent sur la page d'accueil, sous le compte à rebours.",
+    defaultColumns: ["title", "hideFrom", "_status"],
+    description:
+      "Les actualités publiées apparaissent sur la page d'accueil, sous le compte à rebours, dans l'ordre de cette liste. Glisser-déposer pour les réorganiser.",
+  },
+  hooks: {
+    beforeChange: [
+      // Payload ajoute les nouveaux documents en fin de liste : une nouvelle actualité arrive plutôt en tête
+      async ({ data, operation, req }) => {
+        if (operation === "create" && !data._order) {
+          const { docs } = await req.payload.find({
+            collection: "articles",
+            where: { _order: { exists: true } },
+            sort: "_order",
+            select: { _order: true },
+            limit: 1,
+            depth: 0,
+            pagination: false,
+            req,
+          });
+          data._order = generateKeyBetween(null, docs[0]?._order ?? null);
+        }
+        return data;
+      },
+    ],
   },
   // Permet d'enregistrer un brouillon avant de le publier
   versions: { drafts: true },
@@ -48,20 +73,12 @@ export const Articles: CollectionConfig = {
       ],
     },
     {
-      name: "publishedAt",
-      label: "Date de l'article",
-      type: "date",
-      required: true,
-      defaultValue: () => new Date().toISOString(),
-      admin: { position: "sidebar", date: { pickerAppearance: "dayOnly", displayFormat: "d MMMM yyyy" } },
-    },
-    {
       name: "hideFrom",
       label: "Masquer à partir du",
       type: "date",
       admin: {
         position: "sidebar",
-        description: "Optionnel : l'article disparaît automatiquement à cette date (fin des inscriptions…).",
+        description: "Optionnel : l'actualité disparaît automatiquement à cette date (fin des inscriptions…).",
         date: { pickerAppearance: "dayAndTime", displayFormat: "d MMMM yyyy HH:mm" },
       },
     },

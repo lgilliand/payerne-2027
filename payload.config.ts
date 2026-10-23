@@ -20,6 +20,8 @@ import sharp from "sharp";
 import { Articles } from "./cms/collections/Articles";
 import { Media } from "./cms/collections/Media";
 import { Users } from "./cms/collections/Users";
+import { Pages } from "./cms/globals/Pages";
+import { Settings } from "./cms/globals/Settings";
 import { migrations } from "./cms/migrations";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -31,6 +33,7 @@ export default buildConfig({
     meta: { titleSuffix: " – Giron de la Broye 2027" },
   },
   collections: [Articles, Media, Users],
+  globals: [...Pages, Settings],
   // Éditeur de texte volontairement simple : uniquement ce que les blocs du site savent afficher
   editor: lexicalEditor({
     features: [

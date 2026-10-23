@@ -1,7 +1,7 @@
 import config from "@payload-config";
 import { getPayload } from "payload";
 
-/** Articles publiés et pas encore masqués, du plus récent au plus ancien */
+/** Actualités publiées et pas encore masquées, dans l'ordre choisi dans /admin */
 export async function getArticles() {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
@@ -10,7 +10,7 @@ export async function getArticles() {
       _status: { equals: "published" },
       or: [{ hideFrom: { exists: false } }, { hideFrom: { greater_than: new Date().toISOString() } }],
     },
-    sort: "-publishedAt",
+    sort: "_order",
     depth: 1,
     limit: 50,
   });

@@ -3,7 +3,7 @@
 Site Next.js avec le CMS [Payload](https://payloadcms.com) intégré, hébergé sur l'hébergement Node.js d'Infomaniak (`next start`).
 
 - Le site public est servi sur `/`.
-- L'administration (articles de l'accueil, images, comptes) est sur `/admin`.
+- L'administration (textes des pages, actualités de l'accueil, paramètres du site, images, comptes) est sur `/admin`.
 - Les données sont dans une base SQLite (un seul fichier) et les images envoyées dans un dossier, tous deux **hors de Git**.
 
 ## Démarrer en local

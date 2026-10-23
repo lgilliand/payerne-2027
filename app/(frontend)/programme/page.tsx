@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-import Block from "@/components/Block";
+import PageIntro from "@/components/PageIntro";
+import { pageMetadata } from "@/lib/cms";
 
-export const metadata: Metadata = { title: "Programme" };
+export const generateMetadata = () => pageMetadata("programme");
 
 export default function ProgrammePage() {
-  return (
-    <>
-      <Block headingLevel={1} title="Programme" text="Le programme détaillé sera publié prochainement." />
-    </>
-  );
+  return <PageIntro slug="programme" />;
 }

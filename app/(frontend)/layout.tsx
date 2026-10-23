@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description: "Giron de la Broye 2027 à Payerne.",
 };
 
+// Pages rendues à chaque visite : les modifications faites dans /admin apparaissent immédiatement
+export const dynamic = "force-dynamic";
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,

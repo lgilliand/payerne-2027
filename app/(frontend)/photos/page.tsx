@@ -1,12 +1,8 @@
-import type { Metadata } from "next";
-import Block from "@/components/Block";
+import PageIntro from "@/components/PageIntro";
+import { pageMetadata } from "@/lib/cms";
 
-export const metadata: Metadata = { title: "Photos" };
+export const generateMetadata = () => pageMetadata("photos");
 
 export default function PhotosPage() {
-  return (
-    <>
-      <Block headingLevel={1} title="Photos" text="Les galeries photos seront publiées ici." />
-    </>
-  );
+  return <PageIntro slug="photos" />;
 }
