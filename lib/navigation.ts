@@ -1,20 +1,29 @@
-export type NavItem = {
-  label: string;
+import type { PageSlug } from "./cms";
+
+type NavPage = {
   href: string;
+  /** Fiche de la page dans /admin : son titre sert de nom dans le menu, une case l'y affiche ou non */
+  slug: PageSlug;
+  /** Nom fixe dans le menu, à la place du titre de la page */
+  label?: string;
   /** Page pas encore prête : rangée dans le sous-menu « À venir », visible en développement uniquement */
   hidden?: boolean;
 };
 
-const allNavigation: NavItem[] = [
-  { label: "Accueil", href: "/" },
-  { label: "Bénévoles", href: "/benevoles" },
-  { label: "Boutique", href: "/boutique" },
-  { label: "Comité", href: "/comite" },
-  { label: "Sponsors", href: "/sponsors", hidden: true },
-  { label: "Photos", href: "/photos", hidden: true },
-  { label: "Infos générales", href: "/infos", hidden: true },
-  { label: "Programme", href: "/programme", hidden: true },
-  { label: "Billetterie", href: "/billetterie", hidden: true },
+export type MenuItem = { label: string; href: string };
+
+const allNavigation: NavPage[] = [
+  // Le titre de l'accueil est le message de bienvenue : nom fixe dans le menu
+  { href: "/", slug: "accueil", label: "Accueil" },
+  { href: "/historique", slug: "historique" },
+  { href: "/benevoles", slug: "benevoles" },
+  { href: "/boutique", slug: "boutique" },
+  { href: "/comite", slug: "comite" },
+  { href: "/sponsors", slug: "sponsors", hidden: true },
+  { href: "/photos", slug: "photos", hidden: true },
+  { href: "/infos", slug: "infos", hidden: true },
+  { href: "/programme", slug: "programme", hidden: true },
+  { href: "/billetterie", slug: "billetterie", hidden: true },
 ];
 
 // Les pages pas encore prêtes ne sont accessibles qu'en développement (npm run dev) :
@@ -28,9 +37,8 @@ export function isPublished(pathname: string) {
   return showUpcoming || !hiddenPaths.some((href) => pathname === href || pathname.startsWith(`${href}/`));
 }
 
+/** Pages prêtes, à filtrer encore selon la case « Afficher dans le menu » (voir getMenu) */
 export const navigation = allNavigation.filter((item) => !item.hidden);
 
-export const upcomingNavigation = {
-  label: "À venir",
-  items: showUpcoming ? allNavigation.filter((item) => item.hidden) : [],
-};
+/** Pages pas encore prêtes, pour le sous-menu « À venir » */
+export const upcomingNavigation = showUpcoming ? allNavigation.filter((item) => item.hidden) : [];

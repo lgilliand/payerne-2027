@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Libre_Franklin } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { getMenu } from "@/lib/cms";
 import "./globals.css";
 
 // La police est téléchargée au build et servie depuis le site (aucun appel à Google)
@@ -27,13 +28,15 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const { navigation, upcoming } = await getMenu();
+
   return (
     <html lang="fr-CH" className={libreFranklin.variable}>
       <body>
-        <Header />
+        <Header navigation={navigation} upcoming={upcoming} />
         <main>{children}</main>
         <Footer />
       </body>

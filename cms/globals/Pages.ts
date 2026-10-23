@@ -1,13 +1,25 @@
 import type { Field, GlobalConfig } from "payload";
 import { paragraphs } from "../richText";
 
-// Champs communs à toutes les pages : le bloc du haut et la description pour les moteurs de recherche.
-// Valeurs par défaut sous forme de fonction : Payload ne les recopie pas dans le schéma SQL,
-// où les apostrophes des textes casseraient la création des tables.
-function introFields(title: string, intro: string[]): Field[] {
+// Champs communs à toutes les pages : le bloc du haut, la présence dans le menu
+// et la description pour les moteurs de recherche.
+// Textes par défaut sous forme de fonction : Payload ne les recopie pas dans le schéma SQL,
+// où les apostrophes casseraient la création des tables.
+function introFields(title: string, intro: string[], showInMenu = true): Field[] {
   return [
     { name: "title", label: "Titre", type: "text", required: true, defaultValue: () => title },
     { name: "intro", label: "Texte", type: "richText", required: true, defaultValue: () => paragraphs(...intro) },
+    {
+      name: "showInMenu",
+      label: "Afficher dans le menu",
+      type: "checkbox",
+      defaultValue: showInMenu,
+      admin: {
+        position: "sidebar",
+        description:
+          "Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.",
+      },
+    },
     {
       name: "description",
       label: "Description pour Google",
@@ -21,13 +33,13 @@ function introFields(title: string, intro: string[]): Field[] {
 }
 
 // Sans texte fourni, le champ est vide et sera rempli dans /admin
-function page(slug: string, label: string, intro: string[] = []): GlobalConfig {
+function page(slug: string, label: string, intro: string[] = [], showInMenu = true): GlobalConfig {
   return {
     slug: `page-${slug}`,
     label,
     admin: { group: "Pages" },
     access: { read: () => true },
-    fields: introFields(label, intro),
+    fields: introFields(label, intro, showInMenu),
   };
 }
 
@@ -73,7 +85,7 @@ const home: GlobalConfig = {
 
 export const Pages: GlobalConfig[] = [
   home,
-  page("histoire", "Histoire"),
+  page("historique", "Historique", [], false),
   page("benevoles", "Bénévoles", [
     "Les pré-inscriptions des bénévoles sont ouvertes !",
     "Réserve dès maintenant ta place dans l'équipage pour ne pas rater la tranche horaire qui te convient le mieux.",

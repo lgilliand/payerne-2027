@@ -3,10 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { navigation, upcomingNavigation } from "@/lib/navigation";
+import type { MenuItem } from "@/lib/navigation";
 import styles from "./Header.module.css";
 
-export default function Header() {
+type HeaderProps = {
+  navigation: MenuItem[];
+  /** Pages pas encore prêtes (développement uniquement), rangées dans le sous-menu « À venir » */
+  upcoming: MenuItem[];
+};
+
+export default function Header({ navigation, upcoming }: HeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [subOpen, setSubOpen] = useState(false);
@@ -47,7 +53,7 @@ export default function Header() {
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
-  const subActive = upcomingNavigation.items.some((item) => isActive(item.href));
+  const subActive = upcoming.some((item) => isActive(item.href));
 
   return (
     <header className={styles.header}>
@@ -97,7 +103,7 @@ export default function Header() {
               </li>
             ))}
 
-            {upcomingNavigation.items.length > 0 && (
+            {upcoming.length > 0 && (
               <li ref={subRef} className={styles.subItem}>
                 <button
                   type="button"
@@ -107,11 +113,11 @@ export default function Header() {
                   data-active={subActive || undefined}
                   onClick={() => setSubOpen((o) => !o)}
                 >
-                  {upcomingNavigation.label}
+                  À venir
                   <span className={styles.chevron} aria-hidden="true" />
                 </button>
                 <ul id="sub-nav" className={styles.subList} hidden={!subOpen}>
-                  {upcomingNavigation.items.map((item) => (
+                  {upcoming.map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}

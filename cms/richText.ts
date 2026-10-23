@@ -18,7 +18,7 @@ export const paragraph = (value: string) => ({
   type: "paragraph",
   textFormat: 0,
   textStyle: "",
-  children: [text(value)],
+  children: value ? [text(value)] : [],
 });
 
 export const bulletList = (items: string[]) => ({
@@ -34,4 +34,5 @@ export function richText(...children: ReturnType<typeof paragraph | typeof bulle
   return { root: { ...node, type: "root", format: "" as const, children } };
 }
 
-export const paragraphs = (...values: string[]) => richText(...values.map(paragraph));
+// L'éditeur exige au moins un paragraphe, même vide
+export const paragraphs = (...values: string[]) => richText(...(values.length ? values : [""]).map(paragraph));

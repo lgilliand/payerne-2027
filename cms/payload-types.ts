@@ -91,7 +91,7 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'page-accueil': PageAccueil;
-    'page-histoire': PageHistoire;
+    'page-historique': PageHistorique;
     'page-benevoles': PageBenevole;
     'page-boutique': PageBoutique;
     'page-comite': PageComite;
@@ -104,7 +104,7 @@ export interface Config {
   };
   globalsSelect: {
     'page-accueil': PageAccueilSelect<false> | PageAccueilSelect<true>;
-    'page-histoire': PageHistoireSelect<false> | PageHistoireSelect<true>;
+    'page-historique': PageHistoriqueSelect<false> | PageHistoriqueSelect<true>;
     'page-benevoles': PageBenevolesSelect<false> | PageBenevolesSelect<true>;
     'page-boutique': PageBoutiqueSelect<false> | PageBoutiqueSelect<true>;
     'page-comite': PageComiteSelect<false> | PageComiteSelect<true>;
@@ -465,6 +465,10 @@ export interface PageAccueil {
     [k: string]: unknown;
   };
   /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
+  /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
   description?: string | null;
@@ -479,9 +483,9 @@ export interface PageAccueil {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "page-histoire".
+ * via the `definition` "page-historique".
  */
-export interface PageHistoire {
+export interface PageHistorique {
   id: number;
   title: string;
   intro: {
@@ -499,6 +503,10 @@ export interface PageHistoire {
     };
     [k: string]: unknown;
   };
+  /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -529,6 +537,10 @@ export interface PageBenevole {
     [k: string]: unknown;
   };
   /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
+  /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
   description?: string | null;
@@ -557,6 +569,10 @@ export interface PageBoutique {
     };
     [k: string]: unknown;
   };
+  /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -587,6 +603,10 @@ export interface PageComite {
     [k: string]: unknown;
   };
   /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
+  /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
   description?: string | null;
@@ -615,6 +635,10 @@ export interface PageSponsor {
     };
     [k: string]: unknown;
   };
+  /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -645,6 +669,10 @@ export interface PagePhoto {
     [k: string]: unknown;
   };
   /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
+  /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
   description?: string | null;
@@ -673,6 +701,10 @@ export interface PageInfo {
     };
     [k: string]: unknown;
   };
+  /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -703,6 +735,10 @@ export interface PageProgramme {
     [k: string]: unknown;
   };
   /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
+  /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
   description?: string | null;
@@ -731,6 +767,10 @@ export interface PageBilletterie {
     };
     [k: string]: unknown;
   };
+  /**
+   * Le titre de la page sert de nom dans le menu (sauf l'accueil, toujours nommé « Accueil »). Décochée, la page n'apparaît plus dans le menu mais reste accessible par son adresse et les liens du site.
+   */
+  showInMenu?: boolean | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -777,6 +817,7 @@ export interface Setting {
 export interface PageAccueilSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   image?: T;
   countdownLabel?: T;
@@ -787,11 +828,12 @@ export interface PageAccueilSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "page-histoire_select".
+ * via the `definition` "page-historique_select".
  */
-export interface PageHistoireSelect<T extends boolean = true> {
+export interface PageHistoriqueSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -804,6 +846,7 @@ export interface PageHistoireSelect<T extends boolean = true> {
 export interface PageBenevolesSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -816,6 +859,7 @@ export interface PageBenevolesSelect<T extends boolean = true> {
 export interface PageBoutiqueSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -828,6 +872,7 @@ export interface PageBoutiqueSelect<T extends boolean = true> {
 export interface PageComiteSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -840,6 +885,7 @@ export interface PageComiteSelect<T extends boolean = true> {
 export interface PageSponsorsSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -852,6 +898,7 @@ export interface PageSponsorsSelect<T extends boolean = true> {
 export interface PagePhotosSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -864,6 +911,7 @@ export interface PagePhotosSelect<T extends boolean = true> {
 export interface PageInfosSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -876,6 +924,7 @@ export interface PageInfosSelect<T extends boolean = true> {
 export interface PageProgrammeSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -888,6 +937,7 @@ export interface PageProgrammeSelect<T extends boolean = true> {
 export interface PageBilletterieSelect<T extends boolean = true> {
   title?: T;
   intro?: T;
+  showInMenu?: T;
   description?: T;
   updatedAt?: T;
   createdAt?: T;
