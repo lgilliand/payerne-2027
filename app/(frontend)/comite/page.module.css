@@ -44,6 +44,20 @@
   color: var(--color-muted);
 }
 
+/* Adresse cliquable (ouvre la messagerie), plus discrète que le nom et le rôle */
+.email {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  color: var(--color-muted);
+  text-decoration: none;
+}
+
+.email span {
+  white-space: nowrap;
+}
+
 /* Grand écran : les 5 sur une ligne, décalés vers le bas en s'éloignant du centre */
 @media (min-width: 768px) {
   .squadron {

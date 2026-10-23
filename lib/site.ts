@@ -6,12 +6,6 @@ export const site = {
   startDate: "2027-07-28T18:00:00+02:00",
   email: "info@payerne2027.ch",
   president: "Michaël Rapin",
-  // Repas de soutien : la section de l'accueil est masquée dès la fin des inscriptions
-  supportDinner: {
-    formUrl:
-      "https://docs.google.com/forms/d/e/1FAIpQLSelbp--whMqhHIYaMVyeWfQLfi8Nm1x2yqj5sAfzagx-Kdyng/viewform?usp=send_form",
-    hideFrom: "2026-10-11T00:00:00+02:00",
-  },
   // Pré-inscription des bénévoles (Benevoo) : page publique et identifiant pour l'iframe
   volunteerUrl: "https://benevoo.ch/manifestation-public/2d0d1e4c685c1539",
   benevooEventId: "2d0d1e4c685c1539",

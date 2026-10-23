@@ -1,7 +1,6 @@
 import ArticleBlock from "@/components/ArticleBlock";
 import Block from "@/components/Block";
 import Countdown from "@/components/Countdown";
-import VisibleUntil from "@/components/VisibleUntil";
 import { getArticles } from "@/lib/articles";
 import { site } from "@/lib/site";
 import styles from "./page.module.css";
@@ -62,46 +61,6 @@ export default async function HomePage() {
       {articles.map((article) => (
         <ArticleBlock key={article.id} article={article} />
       ))}
-      <VisibleUntil date={site.supportDinner.hideFrom}>
-        <Block
-          title="Repas de soutien"
-          text={
-            <>
-              <p>
-                Avant le grand décollage, on fait le plein ! Viens soutenir le Giron de la
-                Broye 2027 lors de notre repas de soutien.
-              </p>
-              <dl className={styles.details}>
-                <dt>Date</dt>
-                <dd>Vendredi 23 octobre 2026</dd>
-                <dt>Heure</dt>
-                <dd>Apéro dès 18h30</dd>
-                <dt>Lieu</dt>
-                <dd>Halle des Fêtes, Payerne</dd>
-                <dt>Prix</dt>
-                <dd>CHF 55.– par personne (paiement à réception de la facture)</dd>
-                <dt>Menu</dt>
-                <dd>
-                  Terrine de porc
-                  <br />
-                  Rôti de porc, sauce moutarde, gratin et légumes
-                  <br />
-                  Mousse aux fruits exotiques
-                </dd>
-              </dl>
-              <p>Inscriptions jusqu&apos;au 10 octobre 2026.</p>
-            </>
-          }
-          image={{
-            src: "/images/repas-de-soutien.jpg",
-            alt: "Flyer du repas de soutien : avion Jet27 Air, 23 octobre 2026, Halle des Fêtes de Payerne, apéro dès 18h30, CHF 55.– par personne",
-            width: 1000,
-            height: 926,
-          }}
-          imagePosition="right"
-          action={{ label: "Je m'inscris", href: site.supportDinner.formUrl }}
-        />
-      </VisibleUntil>
       <Block
         title="Rejoins l'équipage"
         text={
