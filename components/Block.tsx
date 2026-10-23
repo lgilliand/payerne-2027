@@ -2,7 +2,7 @@ import Button, { type ButtonProps } from "./Button";
 import styles from "./Block.module.css";
 
 export type BlockProps = {
-  /** Identifiant HTML, utile pour faire des ancres (ex. /programme/#samedi) */
+  /** Identifiant HTML, utile pour faire des ancres (ex. /programme#samedi) */
   id?: string;
   title?: string;
   /** Texte simple ou contenu JSX (paragraphes, listes, liens…) */

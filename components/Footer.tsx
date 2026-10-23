@@ -19,8 +19,8 @@ export default function Footer() {
           </p>
           <p className={styles.dates}>{site.dates}</p>
           <div className={styles.buttons}>
-            <Button label="Programme" href="/programme/" />
-            <Button label="Bénévoles" href="/benevoles/" />
+            <Button label="Programme" href="/programme" />
+            <Button label="Bénévoles" href="/benevoles" />
           </div>
         </div>
 

@@ -5,7 +5,7 @@ export type ButtonProps = {
   label: string;
   /**
    * Destination du bouton :
-   * - page interne : "/billetterie/"
+   * - page interne : "/billetterie"
    * - ancre : "#programme"
    * - lien externe : "https://…" (ouvert dans un nouvel onglet)
    * - e-mail / téléphone : "mailto:…" / "tel:…"

@@ -1,6 +1,8 @@
+import ArticleBlock from "@/components/ArticleBlock";
 import Block from "@/components/Block";
 import Countdown from "@/components/Countdown";
 import VisibleUntil from "@/components/VisibleUntil";
+import { getArticles } from "@/lib/articles";
 import { site } from "@/lib/site";
 import styles from "./page.module.css";
 
@@ -21,7 +23,12 @@ const materials = [
   "Visserie",
 ];
 
-export default function HomePage() {
+// Page rendue à chaque visite : les articles modifiés dans /admin apparaissent immédiatement
+export const dynamic = "force-dynamic";
+
+export default async function HomePage() {
+  const articles = await getArticles();
+
   return (
     <>
       <Block
@@ -52,6 +59,9 @@ export default function HomePage() {
           doneLabel="Le giron a décollé ! Rejoins-nous sur le tarmac."
         />
       </Block>
+      {articles.map((article) => (
+        <ArticleBlock key={article.id} article={article} />
+      ))}
       <VisibleUntil date={site.supportDinner.hideFrom}>
         <Block
           title="Repas de soutien"
@@ -107,7 +117,7 @@ export default function HomePage() {
             </p>
           </>
         }
-        action={{ label: "Je m'inscris", href: "/benevoles/" }}
+        action={{ label: "Je m'inscris", href: "/benevoles" }}
       />
       <Block
         title="Vente de vin et de gadgets"
@@ -121,7 +131,7 @@ export default function HomePage() {
             <p>Chaque achat soutient l&apos;organisation du giron : merci pour ton soutien.</p>
           </>
         }
-        action={{ label: "Voir la boutique", href: "/boutique/" }}
+        action={{ label: "Voir la boutique", href: "/boutique" }}
       />
       <Block
         title="Recherche de matériel"

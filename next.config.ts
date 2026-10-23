@@ -1,11 +1,7 @@
 import type { NextConfig } from "next";
+import { withPayload } from "@payloadcms/next/withPayload";
 
-const nextConfig: NextConfig = {
-  // Export statique dans le dossier `out/` (hébergement Infomaniak)
-  output: "export",
-  // Génère /boutique/index.html plutôt que /boutique.html (URLs propres sur Apache)
-  trailingSlash: true,
-  images: { unoptimized: true },
-};
+// Le site tourne avec `next start` sur l'hébergement Node.js d'Infomaniak
+const nextConfig: NextConfig = {};
 
-export default nextConfig;
+export default withPayload(nextConfig);

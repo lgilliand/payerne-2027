@@ -4,3 +4,7 @@ out/
 next-env.d.ts
 *.tsbuildinfo
 .DS_Store
+
+# Base de données et images du CMS (jamais dans Git)
+data/
+.env
