@@ -60,7 +60,13 @@ En local, Payload synchronise directement la base avec les collections : la migr
    PAYLOAD_SECRET=<résultat de : openssl rand -hex 32>
    DATABASE_URL=file:<HOME>/payerne-data/payload.db
    MEDIA_DIR=<HOME>/payerne-data/media
+   # Formulaire de contact : adresse de la messagerie Infomaniak qui envoie les e-mails
+   SMTP_HOST=mail.infomaniak.com
+   SMTP_PORT=465
+   SMTP_USER=noreply@payerne2027.ch
+   SMTP_PASSWORD=<mot de passe de cette adresse>
    ```
+   Sans `SMTP_HOST`, les messages du formulaire de contact ne sont pas envoyés (seulement affichés dans les logs).
 5. **Configurer le site** dans le Manager (*Gérer les paramètres avancés* > onglet *Node.js*) :
 
    | Réglage                  | Valeur                                                |

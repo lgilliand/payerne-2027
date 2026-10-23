@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { buildConfig } from "payload";
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import {
   BoldFeature,
   FixedToolbarFeature,
@@ -20,6 +21,7 @@ import sharp from "sharp";
 import { Articles } from "./cms/collections/Articles";
 import { Media } from "./cms/collections/Media";
 import { Users } from "./cms/collections/Users";
+import { Menu } from "./cms/globals/Menu";
 import { Pages } from "./cms/globals/Pages";
 import { Settings } from "./cms/globals/Settings";
 import { migrations } from "./cms/migrations";
@@ -33,7 +35,7 @@ export default buildConfig({
     meta: { titleSuffix: " – Giron de la Broye 2027" },
   },
   collections: [Articles, Media, Users],
-  globals: [...Pages, Settings],
+  globals: [Menu, ...Pages, Settings],
   // Éditeur de texte volontairement simple : uniquement ce que les blocs du site savent afficher
   editor: lexicalEditor({
     features: [
@@ -59,6 +61,20 @@ export default buildConfig({
     // En production, les migrations sont appliquées automatiquement au démarrage
     prodMigrations: migrations,
   }),
+  // Envoi des e-mails (formulaire de contact) par la messagerie Infomaniak, voir .env.example.
+  // Sans configuration SMTP, Payload affiche les e-mails dans la console : pratique en local.
+  email: process.env.SMTP_HOST
+    ? nodemailerAdapter({
+        defaultFromAddress: process.env.SMTP_FROM || process.env.SMTP_USER || "",
+        defaultFromName: "Site web Giron de la Broye 2027",
+        transportOptions: {
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT || 465),
+          secure: Number(process.env.SMTP_PORT || 465) === 465,
+          auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
+        },
+      })
+    : undefined,
   graphQL: { disable: true },
   sharp,
   typescript: { outputFile: path.resolve(dirname, "cms/payload-types.ts") },

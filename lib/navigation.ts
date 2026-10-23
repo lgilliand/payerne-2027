@@ -1,8 +1,8 @@
 import type { PageSlug } from "./cms";
 
-type NavPage = {
+export type NavPage = {
   href: string;
-  /** Fiche de la page dans /admin : son titre sert de nom dans le menu, une case l'y affiche ou non */
+  /** Fiche de la page dans /admin : son titre sert de nom dans le menu */
   slug: PageSlug;
   /** Nom fixe dans le menu, à la place du titre de la page */
   label?: string;
@@ -12,6 +12,7 @@ type NavPage = {
 
 export type MenuItem = { label: string; href: string };
 
+// Pages du site. L'ordre et le choix des pages du menu se règlent dans la fiche « Menu » de /admin.
 const allNavigation: NavPage[] = [
   // Le titre de l'accueil est le message de bienvenue : nom fixe dans le menu
   { href: "/", slug: "accueil", label: "Accueil" },
@@ -19,6 +20,7 @@ const allNavigation: NavPage[] = [
   { href: "/benevoles", slug: "benevoles" },
   { href: "/boutique", slug: "boutique" },
   { href: "/comite", slug: "comite" },
+  { href: "/contact", slug: "contact" },
   { href: "/sponsors", slug: "sponsors", hidden: true },
   { href: "/photos", slug: "photos", hidden: true },
   { href: "/infos", slug: "infos", hidden: true },
@@ -37,7 +39,7 @@ export function isPublished(pathname: string) {
   return showUpcoming || !hiddenPaths.some((href) => pathname === href || pathname.startsWith(`${href}/`));
 }
 
-/** Pages prêtes, à filtrer encore selon la case « Afficher dans le menu » (voir getMenu) */
+/** Pages prêtes, pouvant figurer dans le menu (voir getMenu) */
 export const navigation = allNavigation.filter((item) => !item.hidden);
 
 /** Pages pas encore prêtes, pour le sous-menu « À venir » */

@@ -2,7 +2,7 @@ import config from "@payload-config";
 import type { Metadata } from "next";
 import { getPayload } from "payload";
 import { cache } from "react";
-import { type MenuItem, navigation, upcomingNavigation } from "./navigation";
+import { type NavPage, navigation, upcomingNavigation } from "./navigation";
 
 export type PageSlug =
   | "accueil"
@@ -14,7 +14,8 @@ export type PageSlug =
   | "photos"
   | "infos"
   | "programme"
-  | "billetterie";
+  | "billetterie"
+  | "contact";
 
 // cache() : une seule lecture par visite, même si la page et ses métadonnées la demandent
 export const getSettings = cache(async () => {
@@ -35,21 +36,18 @@ export async function pageMetadata(slug: PageSlug): Promise<Metadata> {
 
 /**
  * Menu du site, nommé avec les titres des pages saisis dans /admin.
- * Le menu principal ne garde que les pages cochées « Afficher dans le menu ».
+ * Le menu principal suit la fiche « Menu », sans les pages pas encore prêtes.
  */
 export async function getMenu() {
-  const withTitles = (items: typeof navigation) =>
-    Promise.all(
-      items.map(async (item) => {
-        const page = await getPage(item.slug);
-        return { label: item.label ?? page.title, href: item.href, visible: page.showInMenu };
-      }),
-    );
-  const [main, upcoming] = await Promise.all([withTitles(navigation), withTitles(upcomingNavigation)]);
-  const toMenu = ({ label, href }: MenuItem) => ({ label, href });
+  const payload = await getPayload({ config });
+  const menu = await payload.findGlobal({ slug: "menu" });
+  const main = (menu.items ?? [])
+    .map(({ page }) => navigation.find((item) => item.slug === page))
+    .filter((item) => item !== undefined);
 
-  return {
-    navigation: main.filter((item) => item.visible).map(toMenu),
-    upcoming: upcoming.map(toMenu),
-  };
+  const withTitles = (items: NavPage[]) =>
+    Promise.all(items.map(async (item) => ({ label: item.label ?? (await getPage(item.slug)).title, href: item.href })));
+  const [mainItems, upcomingItems] = await Promise.all([withTitles(main), withTitles(upcomingNavigation)]);
+
+  return { navigation: mainItems, upcoming: upcomingItems };
 }
