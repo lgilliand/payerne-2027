@@ -150,8 +150,9 @@
 }
 
 /* Fenêtre de détail */
+/* 36 rem, puis la moitié de l'écran dès qu'il est assez large (à partir de 1152 px) */
 .dialog {
-  width: min(36rem, calc(100% - 2 * var(--gutter)));
+  width: min(max(36rem, 50vw), calc(100% - 2 * var(--gutter)));
   max-height: calc(100dvh - 2rem);
   padding: 0;
   border: 0;
@@ -167,6 +168,11 @@
 
 .detail {
   position: relative;
+}
+
+/* Dans la fenêtre élargie, la photo carrée prendrait toute la hauteur : elle est recadrée */
+.detail .image {
+  max-height: 50dvh;
 }
 
 .detail .body {
