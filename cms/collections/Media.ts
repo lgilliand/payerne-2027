@@ -22,7 +22,11 @@ export const Media: CollectionConfig = {
     mimeTypes: ["image/*"],
     formatOptions: { format: "webp", options: { quality: 80 } },
     resizeOptions: { width: 2400, withoutEnlargement: true },
-    imageSizes: [{ name: "block", width: 1200, formatOptions: { format: "webp", options: { quality: 80 } } }],
+    imageSizes: [
+      { name: "block", width: 1200, formatOptions: { format: "webp", options: { quality: 80 } } },
+      // Recadrée au centre pour les cartes du programme
+      { name: "square", width: 800, height: 800, position: "centre", formatOptions: { format: "webp", options: { quality: 80 } } },
+    ],
     adminThumbnail: "block",
   },
 };

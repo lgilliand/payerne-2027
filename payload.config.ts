@@ -19,7 +19,10 @@ import {
 import { fr } from "@payloadcms/translations/languages/fr";
 import sharp from "sharp";
 import { Articles } from "./cms/collections/Articles";
+import { Categories } from "./cms/collections/Categories";
+import { Events } from "./cms/collections/Events";
 import { Media } from "./cms/collections/Media";
+import { Places } from "./cms/collections/Places";
 import { Users } from "./cms/collections/Users";
 import { Menu } from "./cms/globals/Menu";
 import { Pages } from "./cms/globals/Pages";
@@ -34,7 +37,7 @@ export default buildConfig({
     importMap: { baseDir: dirname },
     meta: { titleSuffix: " – Giron de la Broye 2027" },
   },
-  collections: [Articles, Media, Users],
+  collections: [Articles, Events, Places, Categories, Media, Users],
   globals: [Menu, ...Pages, Settings],
   // Éditeur de texte volontairement simple : uniquement ce que les blocs du site savent afficher
   editor: lexicalEditor({
