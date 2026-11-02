@@ -53,8 +53,14 @@ export const Settings: GlobalConfig = {
       label: "Boutique Strap'n'pay",
       type: "text",
       required: true,
-      defaultValue: "https://payerne2027.pay.strapnpay.ch/pay?tid=9f9c0eaa&appview=1&breakIframe=1",
-      admin: { description: "Adresse de la boutique intégrée dans la page Boutique." },
+      defaultValue: "https://shop.strapnpay.ch/01a15df7-779d-7425-ab5f-0335f40a25d3?s=payerne-2027-vente-de-vin",
+      admin: {
+        description:
+          "Lien « Ouvrir la boutique » du code d'intégration Strap'n'pay, la boutique de la page Boutique en découle.",
+      },
+      validate: (value: string | null | undefined) =>
+        /^https:\/\/shop\.strapnpay\.ch\/[0-9a-f-]{36}\?s=[\w-]+$/i.test(value ?? "") ||
+        "L'adresse doit ressembler à https://shop.strapnpay.ch/…?s=…",
     },
     {
       name: "social",

@@ -62,11 +62,12 @@ En local, Payload synchronise directement la base avec les collections : la migr
    MEDIA_DIR=<HOME>/payerne-data/media
    # Formulaire de contact : adresse de la messagerie Infomaniak qui envoie les e-mails
    SMTP_HOST=mail.infomaniak.com
-   SMTP_PORT=465
+   SMTP_PORT=587
    SMTP_USER=noreply@payerne2027.ch
-   SMTP_PASSWORD=<mot de passe de cette adresse>
+   SMTP_PASSWORD=<mot de passe d'appareil de cette adresse>
    ```
    Sans `SMTP_HOST`, les messages du formulaire de contact ne sont pas envoyés (seulement affichés dans les logs).
+   Si le mot de passe contient un `$`, le précéder d'une barre oblique inverse (`abc\$def`) : sinon Next.js le tronque, même entre guillemets.
 5. **Configurer le site** dans le Manager (*Gérer les paramètres avancés* > onglet *Node.js*) :
 
    | Réglage                  | Valeur                                                |

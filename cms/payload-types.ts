@@ -820,7 +820,7 @@ export interface Setting {
    */
   volunteerUrl: string;
   /**
-   * Adresse de la boutique intégrée dans la page Boutique.
+   * Lien « Ouvrir la boutique » du code d'intégration Strap'n'pay, la boutique de la page Boutique en découle.
    */
   shopUrl: string;
   social: {

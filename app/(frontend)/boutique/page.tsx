@@ -1,4 +1,5 @@
 import PageIntro from "@/components/PageIntro";
+import StrapnpayStore from "@/components/StrapnpayStore";
 import { getSettings, pageMetadata } from "@/lib/cms";
 import styles from "./page.module.css";
 
@@ -12,13 +13,7 @@ export default async function BoutiquePage() {
       <PageIntro slug="boutique" />
 
       <div className={`container ${styles.shop}`}>
-        <iframe
-          id="pay-embed"
-          className={styles.frame}
-          src={shopUrl}
-          title="Boutique du Giron de la Broye 2027"
-          allow="payment *"
-        />
+        <StrapnpayStore url={shopUrl} />
         <p className={styles.fallback}>
           La boutique ne s&apos;affiche pas ?{" "}
           <a href={shopUrl} target="_blank" rel="noopener noreferrer">
