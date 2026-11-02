@@ -8,6 +8,7 @@ import * as migration_20261023_224653_page_contact from './20261023_224653_page_
 import * as migration_20261023_230147_menu from './20261023_230147_menu';
 import * as migration_20261102_212822_boutique_strapnpay from './20261102_212822_boutique_strapnpay';
 import * as migration_20261102_214247_programme from './20261102_214247_programme';
+import * as migration_20261102_220608_textes_optionnels from './20261102_220608_textes_optionnels';
 
 export const migrations = [
   {
@@ -58,6 +59,11 @@ export const migrations = [
   {
     up: migration_20261102_214247_programme.up,
     down: migration_20261102_214247_programme.down,
-    name: '20261102_214247_programme'
+    name: '20261102_214247_programme',
+  },
+  {
+    up: migration_20261102_220608_textes_optionnels.up,
+    down: migration_20261102_220608_textes_optionnels.down,
+    name: '20261102_220608_textes_optionnels'
   },
 ];

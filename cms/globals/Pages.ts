@@ -8,7 +8,13 @@ import { paragraphs } from "../richText";
 function introFields(title: string, intro: string[]): Field[] {
   return [
     { name: "title", label: "Titre", type: "text", required: true, defaultValue: () => title },
-    { name: "intro", label: "Texte", type: "richText", required: true, defaultValue: () => paragraphs(...intro) },
+    {
+      name: "intro",
+      label: "Texte",
+      type: "richText",
+      defaultValue: () => paragraphs(...intro),
+      admin: { description: "Optionnel : laisser vide pour n'afficher que le titre." },
+    },
     {
       name: "description",
       label: "Description pour Google",

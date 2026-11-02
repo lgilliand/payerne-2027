@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { RichText } from "@payloadcms/richtext-lexical/react";
 import ArticleBlock from "@/components/ArticleBlock";
 import Block from "@/components/Block";
 import Countdown from "@/components/Countdown";
+import { introText } from "@/components/PageIntro";
 import { getArticles } from "@/lib/articles";
 import { getPage, getSettings } from "@/lib/cms";
 
@@ -31,7 +31,7 @@ export default async function HomePage() {
       <Block
         headingLevel={1}
         title={page.title}
-        text={<RichText data={page.intro} disableContainer />}
+        text={introText(page.intro)}
         image={
           file?.url
             ? { src: file.url, alt: media?.alt ?? "", width: file.width ?? undefined, height: file.height ?? undefined }

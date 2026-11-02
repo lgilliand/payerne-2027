@@ -625,7 +625,10 @@ export interface Menu {
 export interface PageAccueil {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -639,7 +642,7 @@ export interface PageAccueil {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -660,7 +663,10 @@ export interface PageAccueil {
 export interface PageHistorique {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -674,7 +680,7 @@ export interface PageHistorique {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -689,7 +695,10 @@ export interface PageHistorique {
 export interface PageBenevole {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -703,7 +712,7 @@ export interface PageBenevole {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -718,7 +727,10 @@ export interface PageBenevole {
 export interface PageBoutique {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -732,7 +744,7 @@ export interface PageBoutique {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -747,7 +759,10 @@ export interface PageBoutique {
 export interface PageComite {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -761,7 +776,7 @@ export interface PageComite {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -776,7 +791,10 @@ export interface PageComite {
 export interface PageSponsor {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -790,7 +808,7 @@ export interface PageSponsor {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -805,7 +823,10 @@ export interface PageSponsor {
 export interface PagePhoto {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -819,7 +840,7 @@ export interface PagePhoto {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -834,7 +855,10 @@ export interface PagePhoto {
 export interface PageInfo {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -848,7 +872,7 @@ export interface PageInfo {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -863,7 +887,10 @@ export interface PageInfo {
 export interface PageProgramme {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -877,7 +904,7 @@ export interface PageProgramme {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -892,7 +919,10 @@ export interface PageProgramme {
 export interface PageBilletterie {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -906,7 +936,7 @@ export interface PageBilletterie {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */
@@ -921,7 +951,10 @@ export interface PageBilletterie {
 export interface PageContact {
   id: number;
   title: string;
-  intro: {
+  /**
+   * Optionnel : laisser vide pour n'afficher que le titre.
+   */
+  intro?: {
     root: {
       type: string;
       children: {
@@ -935,7 +968,7 @@ export interface PageContact {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   /**
    * Optionnel : une ou deux phrases affichées sous le lien dans les résultats de recherche.
    */

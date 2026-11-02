@@ -24,7 +24,7 @@ const allNavigation: NavPage[] = [
   { href: "/sponsors", slug: "sponsors", hidden: true },
   { href: "/photos", slug: "photos", hidden: true },
   { href: "/infos", slug: "infos", hidden: true },
-  { href: "/programme", slug: "programme", hidden: true },
+  { href: "/programme", slug: "programme" },
   { href: "/billetterie", slug: "billetterie", hidden: true },
 ];
 
